@@ -1,2 +1,2 @@
-const test = 123
-console.log(test)
+const hello = 'world'
+console.log(hello)
