@@ -1,0 +1,11 @@
+{
+  "name": "eslint-project",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint . -f @microsoft/eslint-formatter-sarif -o results.sarif"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "@microsoft/eslint-formatter-sarif": "^2.1.4"
+  }
+}
