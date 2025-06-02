@@ -1,0 +1,28 @@
+name: "ESLint analysis"
+
+on:
+  push:
+  schedule:
+    - cron: '45 15 * * 3'  # Every Wednesday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: |
+          npm install eslint
+          npm install @microsoft/eslint-formatter-sarif
+
+      - name: Run ESLint
+        run: |
+          npx eslint . -f node_modules/@microsoft/eslint-formatter-sarif/sarif.js -o results.sarif || true
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
